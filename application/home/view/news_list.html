@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>新闻发布平台</title>
+<link rel="stylesheet" href="./public/css/home.css" />
+</head>
+<body>
+<div id="box">
+	<h1>最新新闻</h1>
+	<div class="comment_info">
+		新闻数：{{$num}}
+		<span class="sort">
+			排序方式：<a href="index.php" {{if isset($smt.get.sort)}}class="curr"{{/if}}>正序</a> <a href="index.php?sort=desc" {{if isset($smt.get.sort) && $smt.get.sort=='desc'}}class="curr"{{/if}}>倒序</a>
+		</span>
+	</div>
+    <table>
+        <thead>
+        <tr>
+            <th>作者</th>
+            <th>新闻标题</th>
+            <th>发表日期</th>
+        </tr>
+        </thead>
+        <tbody>
+            {{foreach $data as $v }}
+            <tr>
+                <td>{{$v['author']}}</td>
+                <td><a href="index.php?p=home&c=news&a=detail&id={{$v['id']}}">{{$v['title']}}</a></td>
+                <td>{{$v['date']}}</td>
+            </tr>
+            {{/foreach}}
+        </tbody>
+    </table>
+	<div class="news_footer">
+        {{$pageList}}<br/>
+        <a href="index.php?p=admin">后台登录</a>
+	</div>
+</div>
+</body>
+</html>
